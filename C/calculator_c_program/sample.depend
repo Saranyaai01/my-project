@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1701752697 source:c:\users\bright-sys06\desktop\sample\cdemo1\sample\main.c
+	<stdio.h>
+
+1701414712 source:c:\users\bright-sys06\desktop\sample\cdemo1\sample\calculator.c
+	<stdio.h>
+	<stdlib.h>
+
+1701416210 source:c:\users\bright-sys06\desktop\sample\cdemo1\sample\exit.c
+	<stdio.h>
+
+1701416155 source:c:\users\bright-sys06\desktop\sample\cdemo1\sample\add.c
+	<stdio.h>
+

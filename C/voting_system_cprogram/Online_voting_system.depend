@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1542204495 source:c:\users\rajat kumar\desktop\all c\online_voting_system\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1701756794 source:c:\users\bright-sys06\desktop\aibatch01\online-voting-system-data-structure-project-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+
