@@ -1,5 +1,147 @@
 #include<iostream>
 using namespace std;
+class sample
+{
+public:
+    sample()
+{
+
+    int a,a1,a2,a3,a4,a5,a6;
+    int b,b1,b2,b3,b4,b5,b6;
+    cout << "welcome to the arithmetic operator example!" << endl;
+    cout << "Enter the two values:\t";
+    cin  >>a >> b;
+    cout << a+b <<endl;
+    cout <<"Enter the two values:\t";
+    cin >> a1 >>b1;
+    cout << a1-b1 << endl;
+    cout << "Enter the two values:\t";
+    cin  >> a2 >>b2;
+    cout << a2*b2 << endl;
+    cout <<"Enter the two values:\t";
+    cin  >>a3 >>b3;
+    cout  << a3/b3 << endl;
+    cout <<  "Enter the two values:\t";
+    cin  >>a4 >>b4;
+    cout  << a4%b4 << endl;
+    cout <<  "Enter the  value:\t";
+    cin >>a5;
+    cout << ++a5<< endl;
+    cout << "Enter the value:\t";
+    cin   >>a6;
+    cout<< --a6 << endl;
+    cout << "Enter the value:\t";
+    cin   >>b5 ;
+    cout << b5++ << endl;
+    cout << "Enter the value:\t";
+    cin   >> b6 ;
+    cout << b6-- << endl;
+}
+};
+class example
+{
+public:
+    example()
+{
+   int p=10;
+    cout << "\n the value is:" <<p;
+    }
+    void print(int i)
+    {
+        cout << "\n here is int:" <<i;
+    }
+    void print(double q)
+    {
+    cout << "\n here is float:" << q;
+    }
+    void print(string name)
+    {
+    cout << "\n here is  name:" << name;
+    }
+
+};
+class student
+{
+     int rollnumber;
+     char name[50];
+     double fees;
+public:
+    student()
+    {
+
+        cout <<"\n Enter the rollnumber:";
+        cin >> rollnumber;
+        cout <<"\n Enter the name:";
+        cin >> name;
+        cout <<"\n Enter the fees:" ;
+        cin >> fees;
+    }
+
+    void disply()
+    {
+
+         cout << "\n \t"<<rollnumber<<"\t" <<name<<"\t" << fees <<endl;
+    }
+
+
+};
+
+
+ int main()
+ {
+    //sample s;
+    example e;
+    student S;
+    e. print(152);
+    e. print(251.36);
+    e. print("Saranya");
+    S.disply();
+    return 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include<iostream>
+using namespace std;
 class myclass{
 public:
     myclass(){
@@ -20,7 +162,7 @@ int main()
     cin >> name;
     myclass mc1(name);
     return 0;
-}
+}*/
 
 
 
