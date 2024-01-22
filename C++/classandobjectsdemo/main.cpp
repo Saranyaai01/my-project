@@ -1,4 +1,249 @@
-#include<iostream>
+#include <iostream>
+using namespace std;
+
+class example
+{
+private:
+ int y; // Private attribute
+public:
+ int x; // Public attribute
+
+ void display(int a)
+ { // Public method
+ y = a;
+ cout << "y = " << y << ", x = " << x << endl;
+ }
+};
+
+int main()
+ {
+ example e;
+ e.x = 70;
+ e.display(80);
+ return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include <iostream>
+using namespace std;
+
+class MyClass
+{
+private:
+int privateVar;
+
+public:
+
+void setPrivateVar(int value)
+{
+privateVar = value;
+}
+
+int getPrivateVar()
+{
+return privateVar;
+}
+};
+
+int main()
+{
+MyClass obj;
+obj.setPrivateVar(42); // Accessing and modifying private member
+cout << "PrivateVar: " << obj.getPrivateVar() << endl; // Accessing private member
+
+return 0;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include<iostream>
+using namespace std;
+class employee
+{
+private:
+int employeeSalary;
+
+public:
+int employeeId;
+string employeeName;
+
+string getEmployeeName()
+ {
+    return employeeName;
+}
+
+protected:
+void setEmployeeSalary(int n)
+{
+    employeeSalary = n;
+    return;
+}
+};
+int main()
+{
+    employee emp;
+    cout << emp.getEmployeeName();
+    cin >> emp.employeeName;
+   //cout << emp.setEmployeeSalary();
+   //cin >> emp.employeeSalary;
+    return 0;
+
+}*/
+
+
+
+
+
+
+/*#include<iostream>
+using namespace std;
+class specifire{
+private:
+    int salary;
+protected:
+    string empname:
+public:
+    void setsalary(int s)
+    {
+        salary = s;
+    }
+    int getsalary()
+    {
+        return salary;
+
+    }
+    int getsalaryprint()
+    {
+        cout << "\n" << salary;
+    }
+    void getsalaryprintl()
+    {
+        cout << "\n" << salary;
+    }
+
+
+
+};
+int main()
+{
+    specifire sp;
+    sp.setsalary(5000);
+    cout << "\n"<< sp.getsalary();
+    sp.getsalaryprint();
+    sp.getsalaryprintl();
+    return 0;
+
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include<iostream>
 using namespace std;
 class sample
 {
@@ -97,7 +342,7 @@ public:
     e. print("Saranya");
     S.disply();
     return 0;
-  }
+  }*/
 
 
 
