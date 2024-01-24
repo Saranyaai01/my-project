@@ -1,4 +1,112 @@
-#include <iostream>
+#include<iostream>
+using namespace std;
+class person{
+private:
+
+    int Id;
+    string Name;
+
+
+
+public:
+    void set_details()
+    {
+        cout << "Enter the Id:" <<endl;
+        cin >> Id;
+        cout << "Enter the Name:" <<endl;
+        cin >>Name;
+    }
+    string display_name()
+    {
+        return Name;
+    }
+    int display_id()
+    {
+    return Id;
+
+    }
+
+};
+ class student : public person
+ {
+
+char course[50];
+int fee;
+public:
+    void set_s()
+    {
+
+        cout << "Enter the course Name:";
+        cin >> course;
+        cout <<"Enter the course fees:";
+        cin >> fee;
+
+
+    }
+    string display_course()
+    {
+
+       return course;
+     }
+     int display_fees()
+     {
+         return fee;
+     }
+
+
+};
+int main()
+{
+    student s;
+    s.set_details();
+    s.set_s();
+    cout << "\n" << s.display_id()<< endl;
+    cout << "\n" <<s.display_name()<< endl;
+    cout <<"\n" <<s.display_course() <<endl;
+    cout <<"\n" <<s.display_fees() <<endl;
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include <iostream>
 #include <stdio.h>
 
 using namespace std;
@@ -12,11 +120,10 @@ class Information
   public:
     void inputinfo()
     {
-        cout<<"Enter Roll: ";
-        cin>>roll;
-        fflush(stdin);	// clear the input buffer
-        cout<<"Enter Name: ";
-        gets(name);
+        cout <<"Enter Roll: ";
+        cin >>roll;
+        cout <<"Enter Name: ";
+        cin >> name;
     }
 
     void displayinfo()
@@ -26,7 +133,7 @@ class Information
     }
 };
 
-// Inherit the class Information into Result
+
 class Result : public Information
 {
   private:
@@ -39,7 +146,7 @@ class Result : public Information
   public:
     void inputdata()
     {
-        inputinfo();	// calling the inputinfo() method of the parent class Information
+        inputinfo();
         cout<<"Enter English: ";
         cin>>eng;
         cout<<"Enter Math: ";
@@ -50,9 +157,9 @@ class Result : public Information
         per=(total/300.0)*100;
     }
 
-    void displaydata()
+        void displaydata()
     {
-        displayinfo();	// calling the displayinfo() method of the parent class Information
+        displayinfo();
         cout<<"English: "<<eng<<endl;
         cout<<"Math: "<<math<<endl;
         cout<<"Computer: "<<comp<<endl;
@@ -67,4 +174,4 @@ int main()
     x.inputdata();
     x.displaydata();
     return 0;
-}
+}*/
