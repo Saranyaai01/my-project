@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1706852175 source:c:\users\saranyaai01\desktop\aibatch01\aibatch01\my-project\c\pointerdemo\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -3,6 +3,31 @@ using namespace std;
 
 int main()
 {
+       string name;
+        cout << "enter the string:" << endl;
+        getline(cin,name);
+        cout << name <<endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include<iostream>
+using namespace std;
+
+int main() //concatinate
+{
     string firstname;
     cout <<"Enter firstname:" <<endl;
     cin >> firstname;
@@ -30,10 +55,10 @@ int main()
     cout << name;
     cout << "Enter your name:"  <<endl;
     getline(cin, name);
-    cout << name;*/
+    cout << name;
     return 0;
 
-}
+}*/
 
 
 
