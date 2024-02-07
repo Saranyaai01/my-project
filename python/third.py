@@ -59,3 +59,4 @@ print(type(fruit))
 print(fruit.keys())
 print(fruit.values())
 print(fruit.items())
+

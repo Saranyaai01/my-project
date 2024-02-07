@@ -1,4 +1,4 @@
-"""
+"""  
 print("welcome saranya");
 print("welcome to python");
 x = 5
@@ -26,3 +26,4 @@ a=input("enter a value: ");
 print(a);"""
 string = "saranya"
 print(string.upper())
+
