@@ -1,5 +1,62 @@
-#include<iostream>
-using namespace std
+#include <iostream>
+using namespace std;
+int main()
+{
+int number=30;
+int *p ;
+p= &number;
+
+cout << "Address of number variable is:" << &number << endl;
+cout << "Address of p variable is:" << &p << endl;
+cout << "Value of p variable is:" << *p <<endl;
+*p=15;
+cout << "value of p:" << *p;
+   return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string food = "Pizza";
+
+    string* ptr = &food;
+
+    cout << food << "\n";
+    cout << &food << "\n";
+
+
+    cout << *ptr << "\n";
+    *ptr = "burger";
+    cout << *ptr <<  "\n";
+    cout << food <<endl;
+    return 0;
+}*/
+
 
 
 

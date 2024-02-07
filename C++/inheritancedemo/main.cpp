@@ -391,7 +391,7 @@ int main()
 
 
 
-/*#include<iostream>
+#include<iostream>
 using namespace std;
 class person{
 private:
@@ -458,7 +458,7 @@ int main()
     cout <<"\n" <<s.display_course() <<endl;
     cout <<"\n" <<s.display_fees() <<endl;
     return 0;
-}*/
+}
 
 
 
