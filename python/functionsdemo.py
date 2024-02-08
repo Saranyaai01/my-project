@@ -24,11 +24,47 @@ def sample():
     y=input("Enter the is:").split()
     print(y) 
 
-    i = 0
-    while i < 8:
-        i += 1
-        if i == 4:
+    for i in range(5):
+        if i == 2:
             continue
-    print(i)      
+        print(i) 
+    i = 0
+    while i < 6:
+        i += 1
+        if i == 3:
+            continue
+        print(i)
+    for i in range(5):
+        if i ==3:
+            pass
+        else:
+            print(i)
+    fruits = ["apple", "banana", "cherry"]
+    for x in fruits:
+        print(x)
+        if x == "banana":
+            break                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+    fruits = ["apple", "banana", "cherry"]
+    for x in fruits:
+        if x == "banana":
+            break
+        print(x)
+    fruits = ["apple", "banana", "cherry"]
+    for x in fruits:
+        if x == "banana":
+            continue
+        print(x)
+    for x in range(6):
+        print(x)
+    for x in range(2, 6):
+        print(x)
+    for x in range(2, 30, 3):
+        print(x)
 sample()
+
+def saravanan_calling(name):
+    print("soldra entha signal la matena?")
+    print("bajji sapdukonde pekirarr",name)
+saravanan_calling("partha")
+    
    
