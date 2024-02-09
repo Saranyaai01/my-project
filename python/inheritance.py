@@ -4,7 +4,7 @@ class person:
     def __init__(self):
         self.name = 'AKASH'
         self.db = self.Dob()
-     def display(self):
+    def display(self):
         print('NAME = ', self.name)
      # this is inner class
     class Dob:
