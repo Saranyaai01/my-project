@@ -18,7 +18,7 @@ def sample():
             print(l2)
     if a>=6:
         print("a value is",a)
-    else:
+    else:break
         print("end")
         
     y=input("Enter the is:").split()
@@ -66,5 +66,6 @@ def saravanan_calling(name):
     print("soldra entha signal la matena?")
     print("bajji sapdukonde pekirarr",name)
 saravanan_calling("partha")
+
     
    
