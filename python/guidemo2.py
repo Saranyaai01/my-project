@@ -30,6 +30,75 @@ def division():
     c=a/b
     outputbox.config(text=c)
 
+def modulas():
+    a=float(inputbox1.get())
+    b=float(inputbox2.get())
+    c=a%b
+    outputbox.config(text=c)
+
+def power():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    c=a ** b
+    outputbox.config(text=c)
+
+def floordivision():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    c=a // b
+    outputbox.config(text=c)
+
+def equal():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    c=a == b
+    outputbox.config(text=c)
+
+def increement():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    a+=b
+    outputbox.config(text=a)
+
+def decreement():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    a-=b
+    outputbox.config(text=a)
+
+def greaterequl():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    a>>=b
+    outputbox.config(text=a)
+
+def lessthenequl():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    a<<=b
+    outputbox.config(text=a)
+def And ():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    c=a & b
+    outputbox.config(text=a)
+
+def Or ():
+    a=int(inputbox2.get())
+    b=int(inputbox1.get())
+    c=a | b
+    outputbox.config(text=a)
+
+
+
+
+
+
+
+
+
+
+
 
 
     
@@ -56,17 +125,59 @@ outputbox.grid(row=4, column=25, padx=40, pady=40)
 
 
 
-clickme=Button(app,text="addition",command=addition,font="Arial 10 bold")
-clickme.grid(row=4,column=20, padx=40, pady=40)
+clickme=Button(app,text="+",command=addition,font="Arial 10 bold")
+clickme.grid(row=4,column=20)
 
-clickme=Button(app,text="subtraction",command=subtraction ,font="Arial 10 bold")
-clickme.grid(row=4,column=21, padx=40, pady=40)
+clickme=Button(app,text="-",command=subtraction ,font="Arial 20 bold")
+clickme.grid(row=4,column=21)
 
-clickme=Button(app,text="multiplication",command=multiplication,font="Arial 10 bold")
-clickme.grid(row=5,column=20, padx=40, pady=40)
+clickme=Button(app,text="*",command=multiplication,font="Arial 20 bold")
+clickme.grid(row=5,column=20)
 
-clickme=Button(app,text="division",command=division,font="Arial 10 bold")
+clickme=Button(app,text="/",command=division,font="Arial 20 bold")
+clickme.grid(row=5,column=21)
+
+
+clickme=Button(app,text="%",command=modulas,font="Arial 20 bold")
 clickme.grid(row=5,column=21, padx=40, pady=40)
+
+clickme=Button(app,text="X^2",command=power,font="Arial 20 bold")
+clickme.grid(row=4,column=22, padx=40, pady=40)
+
+clickme=Button(app,text="//",command=floordivision,font="Arial 20 bold")
+clickme.grid(row=4,column=23, padx=40, pady=40)
+
+clickme=Button(app,text="==",command=equal,font="Arial 20 bold")
+clickme.grid(row=5,column=24, padx=40, pady=40)
+
+clickme=Button(app,text="+=",command=increement,font="Arial 20 bold")
+clickme.grid(row=5,column=22, padx=40, pady=40)
+
+clickme=Button(app,text="-=",command=decreement,font="Arial 20 bold")
+clickme.grid(row=5,column=23, padx=40, pady=40)
+
+
+clickme=Button(app,text=">>=",command=greaterequl,font="Arial 20 bold")
+clickme.grid(row=6,column=20, padx=40, pady=40)
+
+clickme=Button(app,text="<<=",command=lessthenequl,font="Arial 20 bold")
+clickme.grid(row=6,column=21, padx=40, pady=40)
+
+
+clickme=Button(app,text="&",command=And,font="Arial 20 bold")
+clickme.grid(row=6,column=22, padx=40, pady=40)
+
+clickme=Button(app,text="|",command=Or,font="Arial 20 bold")
+clickme.grid(row=6,column=23, padx=40, pady=40)
+
+
+
+
+
+
+
+
+
 
 
 
