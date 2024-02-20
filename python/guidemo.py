@@ -25,8 +25,8 @@ user.geometry("500x500")
 user.title("LOGIN PAGE")
 
 def no():
-    a=str(entry1.get("saranya"))
-    b=int(entry2.get(12345))
+    # a=str(entry1.get("saranya"))
+    # b=int(entry2.get(12345))
     messagebox.showinfo(" ","Login Succesfully Thank you!")
     quit()
     

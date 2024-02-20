@@ -1,133 +1,166 @@
-#PythonGeeks - import library
+import pickle
+import os.path
 from tkinter import *
-from tkinter import messagebox
+import tkinter.messagebox
+from tkinter import ttk
 
 
-#PythonGeeks - Initialize window
-root = Tk()
-root.geometry('700x550')
-root.config(bg = '#d3f3f5')
-root.title('PythonGeeks Contact Book')
-root.resizable(0,0)
-contactlist = [
-    ['Siddharth Nigam','369854712'],
-    ['Gaurav Patil', '521155222'],
-    ['Abhishek Nikam', '78945614'],
-    ['Sakshi Gaikwad', '58745246'],
-    ['Mohit Paul', '5846975'],
-    ['Karan Patel', '5647892'],
-    ['Sam Sharma', '89685320'],
-    ['John Maheshwari', '98564785'],
-    ['Ganesh Pawar','85967412']
-    ]
+class Address:
+    """__init__() function as the class constructor"""
 
-Name = StringVar()
-Number = StringVar()
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
 
 
-#PythonGeeks - create frame
-frame = Frame(root)
-frame.pack(side = RIGHT)
+class AddressBook:
+    def __init__(self, parent, title):
+        self.parent = parent
 
-scroll = Scrollbar(frame, orient=VERTICAL)
-select = Listbox(frame, yscrollcommand=scroll.set,font=('Times new roman',16),bg="#f0fffc",width=20,height=20,borderwidth=3,relief="groove")
-scroll.config (command=select.yview)
-scroll.pack(side=RIGHT, fill=Y)
-select.pack(side=LEFT,  fill=BOTH, expand=1)
+        self.parent.title(title)
 
+        self.parent.protocol("WM_DELETE_WINDOW", self.on_exit)
 
-#PythonGeeks - function to get select value
+        self.initialization()
+        self.bind()
+        self.set_listbox()
 
-def Selected():
-	print("hello",len(select.curselection()))
-	if len(select.curselection())==0:
-		messagebox.showerror("Error", "Please Select the Name")
-	else:
-		return int(select.curselection()[0])
-    
-#PythonGeeks -function to add new contact
-def AddContact():
-    if Name.get()!="" and Number.get()!="":
-        contactlist.append([Name.get() ,Number.get()])
-        print(contactlist)
-        Select_set()
-        EntryReset()
-        messagebox.showinfo("Confirmation", "Successfully Add New Contact")
+        self.lbx_names.focus_set()
 
-    else:
-        messagebox.showerror("Error","Please fill the information")
+    def bind(self):
+        self.lbx_names.bind('<ButtonRelease-1>', self.on_click_lb)
+        self.lbx_names.bind('<KeyRelease>', self.on_click_lb)
 
+    def which_selected(self):
+        return int(self.lbx_names.curselection()[0])
 
-# fun to edit existing contact
+    def on_click_lb(self, event=None):
+        self.set_data()
 
-def UpdateDetail():
-	if Name.get() and Number.get():
-		contactlist[Selected()] = [Name.get(), Number.get()]
-    
+    def set_data(self):
+        self.name_var.set(self.lst_addresses[self.which_selected()].name)
+        self.email_var.set(self.lst_addresses[self.which_selected()].email)
+        self.phone_var.set(self.lst_addresses[self.which_selected()].phone)
 
-		messagebox.showinfo("Confirmation", "Successfully Update Contact")
-		EntryReset()
-		Select_set()
+    #populates listbox with all the names
+    def set_listbox(self):
+        self.lbx_names.delete(0, END)
+        for dat in range(len(self.lst_addresses)):
+            self.lbx_names.insert(END, self.lst_addresses[dat].name)
+        self.lbx_names.selection_set(0) #selected index in listbox
 
-	elif not(Name.get()) and not(Number.get()) and not(len(select.curselection())==0):
-		messagebox.showerror("Error", "Please fill the information")
+    def initialization(self):
+        main_frame = Frame(self.parent)
+        main_frame.pack(fill=BOTH, expand=YES)
 
-	else:
-		if len(select.curselection())==0:
-			messagebox.showerror("Error", "Please Select the Name and \n press Load button")
-		else:
-			message1 = """To Load the all information of \n 
-						  selected row press Load button\n.
-						  """   
-			messagebox.showerror("Error", message1)
+        self.name_var = StringVar()
+        self.email_var = StringVar()
+        self.phone_var = StringVar()
 
-def EntryReset():
-	Name.set('')
-	Number.set('')
+        self.status_bar = Label(main_frame, text="Felon -2016-", relief=SUNKEN, bd=1).pack(side=BOTTOM, fill=X)
 
-#PythonGeeks- function to delete selected contact
-def Delete_Entry():
-    if len(select.curselection())!=0:
-        result=messagebox.askyesno('Confirmation','You Want to Delete Contact\n Which you selected')
-        if result==True:
-            del contactlist[Selected()]
-            Select_set()
-    else:
-        messagebox.showerror("Error", 'Please select the Contact')
+        frame1 = Frame(main_frame, bd=10)
+        frame1.pack(fill=BOTH, expand=YES, side=LEFT)
 
-   
-# func to view contact
-def VIEW():
-    NAME, PHONE = contactlist[Selected()]
-    Name.set(NAME)
-    Number.set(PHONE)
-        
+        scroll = ttk.Scrollbar(frame1, orient=VERTICAL)
+        self.lbx_names = Listbox(frame1, width=30, yscrollcommand=scroll.set)
 
-#PythonGeeks- function to exit game window   
-def EXIT():
-    root.destroy()
+        self.lbx_names.pack(fill=Y, side=LEFT)
+        scroll.config(command=self.lbx_names.yview)
+        scroll.pack(side=LEFT, fill=Y)
 
+        frame2 = Frame(main_frame, bd=10)
+        frame2.pack(fill=BOTH, expand=YES, side=RIGHT)
 
-def Select_set() :
-    contactlist.sort()
-    select.delete(0,END)
-    for name,phone in contactlist :
-        select.insert (END, name)
-Select_set()
+        frame3 = Frame(frame2)
+        frame3.pack(side=TOP, expand=YES)
 
+        Label(frame3, text='Full Name').grid(row=0, column=0, sticky=W)
+        self.ent_name = Entry(frame3, textvariable=self.name_var, width=30)
+        self.ent_name.grid(row=0, column=1)
 
-#PythonGeeks - define buttons labels and entry widget 
-Label(root, text = 'Name', font=("Times new roman",25,"bold"), bg = 'SlateGray3').place(x= 30, y=20)
-Entry(root, textvariable = Name, width=30).place(x= 200, y=30)
-Label(root, text = 'Contact No.', font=("Times new roman",22,"bold"),bg = 'SlateGray3').place(x= 30, y=70)
-Entry(root, textvariable = Number, width=30).place(x= 200, y=80)
+        Label(frame3, text='Email').grid(row=1, column=0, sticky=W)
+        self.ent_email = Entry(frame3, textvariable=self.email_var, width=30)
+        self.ent_email.grid(row=1, column=1)
 
-Button(root,text=" ADD", font='Helvetica 18 bold',bg='#e8c1c7', command = AddContact, padx=20). place(x= 50, y=140)
-Button(root,text="EDIT", font='Helvetica 18 bold',bg='#e8c1c7',command = UpdateDetail, padx=20).place(x= 50, y=200)
-Button(root,text="DELETE", font='Helvetica 18 bold',bg='#e8c1c7',command = Delete_Entry, padx=20).place(x= 50, y=260)
-Button(root,text="VIEW", font='Helvetica 18 bold',bg='#e8c1c7', command = VIEW).place(x= 50, y=325)
-Button(root,text="RESET", font='Helvetica 18 bold',bg='#e8c1c7', command = EntryReset).place(x= 50, y=390)
-Button(root,text="EXIT", font='Helvetica 24 bold',bg='tomato', command = EXIT).place(x= 250, y=470)
+        Label(frame3, text='Phone').grid(row=2, column=0, sticky=W)
+        self.ent_phone = Entry(frame3, textvariable=self.phone_var, width=30)
+        self.ent_phone.grid(row=2, column=1)
 
-root.mainloop()
-  
+        frame4 = Frame(frame2)
+        frame4.pack(side=BOTTOM, expand=YES)
+
+        self.btn_new = ttk.Button(frame4, text='New', command=self.on_new, width=5)
+        self.btn_new.pack(side=LEFT)
+        self.btn_add = ttk.Button(frame4, text='Add', command=self.on_add, width=5)
+        self.btn_add.pack(side=LEFT)
+        self.btn_mod = ttk.Button(frame4, text='Mod', command=self.on_mod, width=5)
+        self.btn_mod.pack(side=LEFT)
+        self.btn_del = ttk.Button(frame4, text='Del', command=self.on_del, width=5)
+        self.btn_del.pack(side=LEFT)
+
+        self.lst_addresses = self.load_address()
+
+    def on_new(self, event=None):
+        self.ent_name.delete(0, END)
+        self.ent_email.delete(0, END)
+        self.ent_phone.delete(0, END)
+
+    def on_add(self, event=None):
+        address = Address(self.name_var.get(), self.email_var.get(), self.phone_var.get())
+        self.lst_addresses.append(address)
+        self.set_listbox()
+        self.save_address()
+
+    def on_mod(self, event=None):
+        self.lst_addresses[self.which_selected()].name = self.name_var.get()
+        self.lst_addresses[self.which_selected()].email = self.email_var.get()
+        self.lst_addresses[self.which_selected()].phone = self.phone_var.get()
+        self.set_listbox()
+        self.modify_address()
+
+    def on_del(self, event=None):
+        del self.lst_addresses[self.which_selected()]
+        self.set_listbox()
+        self.on_new()
+        self.delete_address()
+
+    def save_address(self):
+        outfile = open("address.dat", "wb")
+        pickle.dump(self.lst_addresses, outfile)
+        tkinter.messagebox.showinfo("Address Saved", "A new address have been saved")
+        outfile.close()
+
+    def modify_address(self):
+        outfile = open("address.dat", "wb")
+        pickle.dump(self.lst_addresses, outfile)
+        tkinter.messagebox.showinfo("Address Changed", "The changes have been saved")
+        outfile.close()
+
+    def delete_address(self):
+            outfile = open("address.dat", "wb")
+            pickle.dump(self.lst_addresses, outfile)
+            tkinter.messagebox.showinfo("Address Deleted", "The address has been deleted")
+            outfile.close()
+
+    def load_address(self):
+        if not os.path.isfile("address.dat"):
+            return []  # Return an empty list
+        try:
+            infile = open("address.dat", "rb")
+            lst_addresses = pickle.load(infile)
+        except EOFError:
+            lst_addresses = []
+        infile.close()
+        return lst_addresses
+
+    def on_exit(self, event=None):
+        self.parent.destroy()
+
+if __name__ == '__main__':
+    root = Tk()
+
+    application = AddressBook(root, "Demo Application - Objects in Python")
+
+    root.mainloop()
