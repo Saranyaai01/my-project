@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import mysql.connector
 demo=Tk()
 demo.geometry("800x600+300+60")
@@ -29,9 +30,13 @@ def insertvalues():
     valuepass=(value,value1,value2,value3,value4,value5,value6)
     result.execute(statement,valuepass)
     establishcon.commit()
-    message=(result.rowcount, " row inserted")
-    mse.config(text=message)
+    print(messagebox.showinfo(" ","1 row inserted"))
+    
+    # message=(result.rowcount, " row insert")
+    # mse.config(text=message)
 
+
+    
 
 def updatevalues():
     value=invalue.get()
