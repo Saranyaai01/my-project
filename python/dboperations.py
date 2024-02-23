@@ -49,9 +49,11 @@ def updatevalues():
     statement="update student_database set name = \""+value1+"\" where ID = "+str(value)+";"
     result.execute(statement)
     establishcon.commit()
+    print(messagebox.showinfo(" ","1 row updated"))
+    
 
-    message=(result.rowcount, " row updated")
-    mse.config(text=message)
+    # message=(result.rowcount, " row updated")
+    # mse.config(text=message)
 
 
 def deletevalues():
@@ -63,8 +65,9 @@ def deletevalues():
     valuepass=(value,)
     result.execute(statement,valuepass)
     establishcon.commit()
-    message=(result.rowcount, " row deleted")
-    mse.config(text=message)
+    print(messagebox.showinfo(" ","1 row deleted"))
+    # message=(result.rowcount, " row deleted")
+    # mse.config(text=message)
 
 
 
@@ -140,8 +143,8 @@ delete.grid(row=14, column=21)
 reset=Button(demo,text="RESET",font="Arial 11 bold")
 reset.grid(row=14,column=22)
 
-mse=Label(demo,text="   ",font= "Arial 15 bold")
-mse.grid(row=15, column=50)
+# mse=Label(demo,text="   ",font= "Arial 15 bold")
+# mse.grid(row=15, column=50)
 
 
 

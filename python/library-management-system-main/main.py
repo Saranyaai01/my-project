@@ -2,8 +2,8 @@ from tkinter import *
 from tkinter import ttk, messagebox
 import customs as cs
 from functools import partial
-import pymysql
-import credentials as cr
+import mysql.connector
+
 
 
 class Management:
@@ -61,7 +61,8 @@ class Management:
         try:
             status = messagebox.askokcancel('Delete Book', 'Are you want to proceed?')
             if status == True:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect(
+                host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
 
                 curs.execute("select * from borrow_record where book_id=%s", row[0])
@@ -70,7 +71,7 @@ class Management:
                 if len(var) != 0:
                     messagebox.showwarning("Critical Warning!", "You can't delete this book record")
                 else:
-                    curs.execute("delete from book_list where book_id=%s",
+                    curs.execute("delete from pymysql where book_id=%s",
                     (
                         row[0]
                     ))
@@ -90,19 +91,20 @@ class Management:
         try:
             status = messagebox.askokcancel('Returning Book', 'Are you want to proceed?')
             if status == True:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect (
+                host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
                 curs.execute("delete from borrow_record where book_id=%s",
                 (
                     row[0]
                 ))
-                curs.execute("select * from book_list where book_id=%s", row[0])
+                curs.execute("select * from pymysql where book_id=%s", row[0])
                 var = curs.fetchone()
 
                 book_count = var[5]
                 book_count += 1
 
-                curs.execute("update book_list set qty=%s where book_id=%s", (book_count, row[0]))
+                curs.execute("update pymysql set qty=%s where book_id=%s", (book_count, row[0]))
 
                 messagebox.showinfo("Success!", "Thanks for returning the book!")
                 connection.commit()
@@ -159,7 +161,7 @@ class Management:
     # table.
     def BorrowBookAgain(self, row):
         try:
-            connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+            connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
             curs = connection.cursor()
             curs.execute("update borrow_record set return_date=%s where stu_roll=%s and book_id=%s",
             (
@@ -228,9 +230,9 @@ class Management:
     # It updates a entry in the 'book_list' table
     def SubmitforUpdateBook(self, row):
         try:
-            connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+            connection = mysql.connector.connect(host="192.168.1.240", user="01", password="AI@123", database="ai_saranya")
             curs = connection.cursor()
-            curs.execute("update book_list set book_name=%s,author=%s,edition=%s,price=%s,qty=%s where book_id=%s",
+            curs.execute("update pymysql set book_name=%s,author=%s,edition=%s,price=%s,qty=%s where book_id=%s",
             (
                 self.bookname_entry.get(),
                 self.author_entry.get(),
@@ -333,9 +335,9 @@ class Management:
         self.tree.bind('<Double-Button-1>', self.OnSelectedforShowBooks)
 
         try:
-            connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+            connection =mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
             curs = connection.cursor()
-            curs.execute("select * from book_list")
+            curs.execute("select * from pymysql")
             rows=curs.fetchall()
 
             if rows == None:
@@ -358,7 +360,7 @@ class Management:
             messagebox.showerror("Error!", "Please enter a roll no.")
         else:
             try:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
                 curs.execute("select * from borrow_record where stu_roll=%s", self.roll_no_entry.get())
                 rows=curs.fetchall()
@@ -432,7 +434,7 @@ class Management:
         self.tree_1.bind('<Double-Button-1>', self.OnSelectedforBorrowRecords)
 
         try:
-            connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+            connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
             curs = connection.cursor()
             curs.execute("select * from borrow_record")
             rows=curs.fetchall()
@@ -455,9 +457,9 @@ class Management:
             messagebox.showerror("Error!", "Please Enter the Book Name")
         else:
             try:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
-                curs.execute("select * from book_list where book_name like %s", ("%" + self.book_entry.get() + "%"))
+                curs.execute("select * from pymysql where book_name like %s", ("%" + self.book_entry.get() + "%"))
                 rows=curs.fetchall()
                 if rows == None:
                     messagebox.showinfo("Database Empty","There is no data to show",parent=self.window)
@@ -501,9 +503,9 @@ class Management:
     #         messagebox.showerror('Error!', "Please select a record")
     #     else:
     #         try:
-    #             connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+    #             connection = ai_saranya.connect(host=self.host, user=self.user, password=self.password, database=self.database)
     #             curs = connection.cursor()
-    #             curs.execute("select * from book_list where book_id=%s", y[0])
+    #             curs.execute("select * from pymysql where book_id=%s", y[0])
     #             row=curs.fetchone()
     #             # self.GetData_to_Update(row)
     #             connection.close()
@@ -579,9 +581,9 @@ class Management:
             messagebox.showerror("Error!","Sorry!, All fields are required",parent=self.window)
         else:
             try:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
-                curs.execute("select * from book_list where book_id=%s", self.id_entry.get())
+                curs.execute("select * from pymysql where book_id=%s", self.id_entry.get())
                 row=curs.fetchone()
 
                 if row!=None:
@@ -610,7 +612,7 @@ class Management:
             messagebox.showerror("Error!","Sorry!, All fields are required",parent=self.window)
         else:
             try:
-                connection = pymysql.connect(host=cr.host, user=cr.user, password=cr.password, database=cr.database)
+                connection = mysql.connector.connect(host="192.168.1.240", user="AIBATCH01", password="AI@123", database="ai_saranya")
                 curs = connection.cursor()
                 curs.execute("select * from book_list where book_id=%s", self.book_id_entry.get())
                 row=curs.fetchone()
@@ -644,7 +646,7 @@ class Management:
                                                     self.return_date_entry.get()
                                                 ))
                             book_quantity -= 1
-                            curs.execute("update book_list set qty=%s where book_id=%s", (book_quantity,self.book_id_entry.get()))
+                            curs.execute("update pymysql set qty=%s where book_id=%s", (book_quantity,self.book_id_entry.get()))
                             connection.commit()
                             connection.close()
                             messagebox.showinfo('Done!', "The data has been submitted")
