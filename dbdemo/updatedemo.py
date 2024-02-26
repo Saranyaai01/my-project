@@ -10,13 +10,13 @@ def DBconnection():
         host="192.168.1.240",
         user="AIBATCH01",
         password="AI@123",
-        database="ai__saranya")
+        database="ai_saranya")
     
         return dpcon
 
 class manuplate:
     def __init__(self):
-        frametop=Frame(app, bg="black",width=800, height=300, padx=10,pady=10)
+        frametop=Frame(app, bg="blue",width=800, height=300, padx=10,pady=10)
         frametop.pack(side = TOP)
         btninsert=Button(app,text="INSERT",command=self.insert).pack(padx=10,pady=10)
         #btnupdate=Button(frametop,text="UPDATE").pack(padx=10, pady=10)
@@ -29,7 +29,7 @@ class manuplate:
         my.title("update into MySQL DB Demo")
         my.geometry("500x500") 
 
-        frameright=Frame(my, bg="black",width=800, height=800, padx=30,pady=30)
+        frameright=Frame(my, bg="red",width=800, height=800, padx=30,pady=30)
         frameright.grid(row=30,column=30)
 
 
@@ -109,7 +109,7 @@ class manuplate:
 
         e_con=DBconnection()
         result=e_con.cursor()
-        statement="insert into studentmark_list(Name,age,tamil,English,maths,physics,chemistry,computer_science) value(%s,19,%s,%s,%s,88,%s,%s);"
+        statement="insert into studentmark_list(Name,age,tamil,English,maths,physics,chemistry,computer_science) value(%s,%s,%s,%s,%s,%s,%s,%s);"
 
         #statement="insert into stdname(a,b,c,d,e,f,g,h) values(" + str(name) + "," + str(age) + ","+str(tamil) + "," + str(english) +","+ str(maths) + "," + str(physics)+","+ str(chemistry) + "," + str(cs)+ ");"
         #valuepass=(a,c,d,e,g,h)
