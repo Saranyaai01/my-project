@@ -34,7 +34,7 @@ def inserttoDB():
     price1=str(Ety_price.get())
     quantity1=str(Ety_quantity.get())
 
-    x = dbcon.insertvalues(stu_id1,stu_name1,book_name1,author1,edition1,price1,quantity1)
+    x =dbcon.insertvalues(stu_id1,stu_name1,book_name1,author1,edition1,price1,quantity1)
     lblConMsg.config(text=x)
     # selectdatas()
 
@@ -207,7 +207,7 @@ btn_Clear.grid(row=8,column=2)
 btn_Exit=Button(titledisplayframeintab, text="Quit", command=quit)
 btn_Exit.grid(row=8,column=3)
 
-msg=dbcon.mydbconnection()
+msg=dbcon.returnMsg()
 lblConMsg=Label(titledisplayframeintab, text=msg)
 lblConMsg.grid(row=9,column=2, pady=20)
 
