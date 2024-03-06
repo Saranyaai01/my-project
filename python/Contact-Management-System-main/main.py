@@ -3,7 +3,7 @@ from functools import partial
 from tkinter import *
 from tkinter import ttk, messagebox
 from turtle import width
-import pymysql
+import mysql.connector
 import custom as cs
 import credentials as cr
 import validemail as vl
@@ -75,7 +75,7 @@ class Management:
         self.tree.bind('<Double-Button-1>', self.Selected)
 
         try:
-            connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+            connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
             curs = connection.cursor()
             curs.execute("select * from contact_register")
             rows=curs.fetchall()
@@ -171,7 +171,7 @@ class Management:
             messagebox.showerror("Error!", "You must input Name or Surname",parent=self.window)
         else:
             try:
-                connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+                connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
                 curs = connection.cursor()
                 curs.execute("select * from contact_register where f_name=%s or l_name=%s", (self.name_entry.get(), self.surname_entry.get()))
                 rows=curs.fetchall()
@@ -196,7 +196,7 @@ class Management:
             messagebox.showerror('Error!', "Please select a record")
         else:
             try:
-                connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+                connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
                 curs = connection.cursor()
                 curs.execute("select * from contact_register where contact=%s", y[3])
                 row=curs.fetchone()
@@ -213,7 +213,7 @@ class Management:
             messagebox.showerror('Error!', "Please select a record")
         else:
             try:
-                connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+                connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
                 curs = connection.cursor()
                 curs.execute("select * from contact_register where contact=%s", y[3])
                 row=curs.fetchone()
@@ -269,7 +269,7 @@ class Management:
             messagebox.showerror("Error!","Sorry!, All fields are required",parent=self.window)
         else:
             try:
-                connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+                connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
                 curs = connection.cursor()
                 curs.execute("select * from contact_register where contact=%s", row[3])
                 row=curs.fetchone()
@@ -301,7 +301,7 @@ class Management:
             messagebox.showerror("Error!","Sorry!, All fields are required",parent=self.window)
         else:
             try:
-                connection = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
+                connection = mysql.connector.connect(host=self.host, user=self.user, password=self.password, database=self.database)
                 curs = connection.cursor()
                 curs.execute("select * from contact_register where contact=%s", self.contact_entry.get())
                 row=curs.fetchone()

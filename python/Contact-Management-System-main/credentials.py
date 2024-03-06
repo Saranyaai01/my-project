@@ -1,5 +1,5 @@
 # User Credentials
-host = 'localhost'
-user = 'Your Username here'
-password = 'Your Password here'
+host = '192.168.1.240'
+user = 'AIBATCH01'
+password = 'AI@123'
 database = 'contact_management'

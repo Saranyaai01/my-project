@@ -26,20 +26,12 @@ class DBManipulate:
         edition1=edition
         price1=price
         quantity1=quatity
-    # def insertvalues(self):
-    #     stu_id1=1
-    #     stu_name1="saranya"
-    #     book_name1="tamil"
-    #     author1="arun"
-    #     edition1="2nd"
-    #     price1=123
-    #     quantity1=1
+   
 
         data=self.mydbconnection()
         result=data.cursor()
 
-        stmts="INSERT INTO borrow_details(stu_id, stu_name,book_name,author,edition,price,quantity) VALUES("+str(stu_id1)+ ", "+ '"' + stu_name1 + '"' + ","+ '"' + book_name1 + '"' + ","+ '"' + author1 + '"'  + ","+  '"' + edition1 + '"' + "," + str(price1)+" , "+str(quantity1)+");)"
-        # value=(stu_id1,stu_name1,book_name1,author1,edition1,price1,quantity1)
+        stmts="INSERT INTO borrow_details(stu_id, stu_name,book_name,author,edition,price,quantity) VALUES("+str(stu_id1)+ ", "+ '"' + stu_name1 + '"' + ","+ '"' + book_name1 + '"' + ","+ '"' + author1 + '"'  + ","+  '"' + edition1 + '"' + "," + str(price1)+ "," +str(quantity1)+");)"
         result.execute(stmts)
         print(stmts)
 
